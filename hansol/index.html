@@ -1,0 +1,1049 @@
+  
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="hansole paper">
+  <meta name="keywords" content="hansole,paper,한솔,제지,한솔제지,종이">
+  <meta name="discription" content="hansole paper">
+  <meta name="copyright" content="hansole paper">
+  <!-- 오픈그래픽/트위터 -->
+  <title>한솔제지</title>
+  <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <style>
+    html{
+      scroll-behavior: smooth;
+    }
+    html.hide{
+      overflow:hidden;
+    }
+    .skip_menu{
+      display:none;
+      position:fixed;
+      left:0;
+      right:0;
+      top:-100px;
+      z-index:10;      
+      background-color:#fff;
+      transition:0.3s;      
+    }
+    .skip_menu a{
+      display:inline-block;
+      padding:1rem;
+      border-radius:4px;
+      font-size:1.4rem;
+      color:#fff;
+      background-color:darkblue;
+    }
+
+    .wrap{overflow:hidden;}
+    .header{
+      width:100%;
+      position:fixed;
+      top:0;      
+      z-index:20;
+      background-color:transparent;
+      transition:0.3s;
+    }
+    .header.active{
+      background-color:#fff;
+    }
+    .container{
+      width:100%;
+      max-width:1440px;
+      margin:0 auto;
+      padding:1rem;
+    }
+    .h1.logo{
+      float:left;
+      width:100px;
+      position:relative;
+      z-index:2;
+    }
+    .h1.logo a{
+      display:block;
+    }
+
+    .btn_nav{
+      float:right;
+      width:32px;
+      height:23px;
+      margin-top: 8px;
+      position:relative; 
+      z-index:2;     
+    }
+    .btn_nav div{
+      width:100%;      
+      height:3px;
+      background-color:black;
+      position:absolute;
+      left:0;
+      transition:all 0.5s;
+    }
+    .btn_nav div.line01{
+      top:0;
+    }
+    .btn_nav div.line02{
+      top:10px;
+    }
+    .btn_nav div.line03{
+      top:20px;
+    }
+
+    .btn_nav.active div.line01{
+      top:12px;
+      transform:rotate(45deg);
+    }
+    .btn_nav.active div.line02{
+      width:0;
+    }
+    .btn_nav.active div.line03{
+      top:12px;
+      transform:rotate(-45deg);
+    }
+    .nav{      
+      position:fixed;
+      left:100%;
+      right:-100%;
+      top:0;
+      bottom:0;
+      z-index:1;      
+      padding:12rem 1rem 6rem 1rem;
+      background-color:#fff;
+      transition:0.5s;
+      display:flex;
+      flex-flow:column nowrap;
+      justify-content:space-between;
+    }
+    .nav.active{
+      left:0;
+      right:0;
+    }
+    .langs div{
+      display:inline-block;
+      margin-right:1rem;
+    }
+    .langs div a{
+      font-size:1.2rem;
+      font-weight:500;
+      color:#aaa;
+    }
+    .langs div a.active{
+      color:#000;
+      text-decoration:underline;
+    }
+    .main_menu>li{
+      margin:1.6rem 0;
+      cursor:pointer;
+    }
+
+    .main_menu>li>span{
+      display:flex;
+      flex-flow:row nowrap;
+      justify-content:space-between;
+      align-items:center;
+      font-size:2rem;
+      font-weight:600;
+    } 
+    .main_menu>li>span.active{
+      color:darkblue;
+    }
+    .main_menu>li>span::after{
+      content:'+';
+      display:block;
+      font-size:2rem;
+      font-weight:600;
+    }
+    .sub_menu a{
+      display:inline-block;
+      margin:0.4rem 0;
+      font-size:1.2rem;
+      color:#333;
+    }
+    .nav_bottom{
+      display:flex;
+      flex-flow:row nowrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sns a{
+      margin-left:1rem;
+      font-size:2rem;
+    }
+    .main_slider .container{
+      max-width:1800px;
+      padding:0;
+      overflow:hidden;
+    }
+
+    .slider{
+      position:relative;
+      height:600px;
+    }
+    .slider_images{
+      width:500vw;
+      position:absolute;
+      left:0;
+      top:0;
+    }
+    .slide{
+      float:left;
+      width:100vw;
+      height:600px;
+      background-size:cover;
+      background-position:center; 
+      display:flex;
+      justify-content:center; 
+      align-items:center;
+    }
+    .slide:nth-child(1){
+      background-image:url(./images/slide1_1.jpg);      
+    }
+    .slide:nth-child(2){
+      background-image:url(./images/slide1_2.jpg);      
+    }
+    .slide:nth-child(3){
+      background-image:url(./images/slide1_3.jpg);      
+    }
+    .slide:nth-child(4){
+      background-image:url(./images/slide1_4.jpg);      
+    }
+    .slide:nth-child(5){
+      background-image:url(./images/slide1_5.jpg);      
+    }
+    .slide_content{
+      width:70%;
+    }
+    .slide_content h3{
+      margin-bottom:2rem;
+      font-size:3rem;
+      font-weight:500;
+    }
+    .slide:nth-child(1) h3::first-letter{
+      margin-right:0.5rem;
+      border:3px solid darkblue;
+      padding:0 1rem;
+      color:darkblue;
+    }
+    .slide_content p{
+      font-size:1.2rem;
+      color:#333;
+    }
+    .slider_prev_next_btn{
+      position:absolute;
+      left:5%;
+      right:5%;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      justify-content: space-between;
+    }    
+    .prev,.next{
+      font-size:2rem;
+      color:rgba(0,0,0,0.5);
+      cursor:pointer;
+    }
+
+    .slider_pagination{
+      position: absolute;
+      left:5%;
+      right:5%;
+      bottom:24px;      
+      display:flex;      
+    }
+    .pagination{
+      flex:1;
+      cursor:pointer;
+    }
+    .pagination::before{
+      content:'';
+      display:block;
+      height:4px;
+      background-color:#aaa;
+      transition:0.1s;
+    }
+    .pagination.active::before,
+    .pagination:hover::before{
+      background-color:#000;
+    }
+    .pagination span{
+      display:block;
+      color:#aaa;
+      text-align:center;
+      transition:0.1s;
+    }
+    .pagination.active span,
+    .pagination:hover span{
+      color:#000;
+    }
+
+    .sec_sub_slider{
+      padding:200px 0;
+    }
+    .sub_container{
+      max-width:2000px;
+      margin:0 auto;
+      position:relative;
+    }
+    .sub_slider{
+      width:300vw;
+      display:flex;
+      flex-flow:row nowrap;
+      transition:0.5s;
+    }
+    .sub_slide{
+      width:100vw;
+      position:relative;
+    }
+    .sub_slide .sub_slide_img{
+      height:600px;  
+      background-size: cover;    
+      background-position:center;
+    }
+    .sub_slide:nth-child(1) .sub_slide_img{
+      background-image:url(./images/slide2_1.jpg);
+    }
+    .sub_slide:nth-child(2) .sub_slide_img{
+      background-image:url(./images/slide2_2.jpg);
+    }
+    .sub_slide:nth-child(3) .sub_slide_img{
+      background-image:url(./images/slide2_3.jpg);
+    }
+    .sub_slide_cont h3,
+    .sub_slide_cont_txt{
+      position:absolute;
+      left:14px;
+    }
+    .sub_slide_cont h3{
+      top: -88px;
+      font-size: 3rem;
+      font-weight: 500;
+    }
+    .sub_slide_cont_txt{
+      top:calc(100% - 30px);
+      display:flex;
+      flex-flow:column nowrap;
+    }
+
+    .hansol_info{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      width:160px;
+      height:60px;
+      margin-bottom:2rem;
+      padding:1rem;
+      background-color:#000;
+      cursor: pointer;
+      color:#fff;
+      font-size:1.2rem;
+      order:1;
+    }
+    .hansol_info span{
+      font-size:1.2rem;
+      color:#fff;
+    }
+    .sub_slide_cont_txt p:nth-child(1){
+      font-size:1.6rem;
+      color:#333;
+      line-height:2.6rem;
+      order:2;
+      margin-bottom:2rem;
+    }
+    .sub_slide_cont_txt p:nth-child(2){
+      font-size:1.6rem;
+      color:#999;
+      order:3;
+    }
+    .sub_prev_next,
+    .sub_paginations{
+      position: absolute;
+      left:0;
+      right:0;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      justify-content: space-between;
+      padding:0 1rem;
+    }
+    .sub_prev,.sub_next{
+      font-size:3rem;
+      color:rgba(0,0,0,0.5);
+      cursor: pointer;
+    }
+    .sub_paginations{
+      top:90%;
+      justify-content:center;
+      display:none;      
+    }
+    .sub_paginations::before{
+      content:'';
+      display:block;
+      height:2px;
+      background-color:#fff;
+      position: absolute;
+      left:0;
+      right:0;
+      top:9px;
+    }
+    .sub_pagination{
+      width:20px;
+      height:20px;
+      margin:0 10rem;
+      border-radius:50%;
+      background-color:#fff;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      position:relative;
+      cursor: pointer;
+    }
+    .sub_pagination::after{
+      content:'';
+      display:block;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      background-color:transparent;
+      transition:0.3s;
+    }
+    .sub_pagination.active::after{
+      background-color:darkblue;
+    }
+
+    .footer{
+      height:300px;
+    }
+
+    
+
+
+    /* 1024이상 스타일 */
+    @media(min-width:1024px){
+      .skip_menu{
+        display:block;
+      }
+      .header{
+        border-bottom:1px solid #999;
+        position:relative;
+      }
+      .h1.logo{
+        width:110px;
+      }
+      .btn_nav{
+        display:none;
+      }
+      .nav{
+        position:static;
+        padding:0;
+        flex-flow:row nowrap;
+        justify-content:space-evenly;
+      }
+      .langs{
+        order:3;
+        display:flex;
+        align-items:center;
+      }
+      .langs .lang01{
+        display:none;
+      }
+      .langs div a{
+        font-size:14px;
+      }
+      .main_menu{
+        order:1;
+        display:flex;
+        flex-flow:row nowrap;
+        justify-content:space-evenly;
+        width:68.359375%;
+      }
+      .main_menu>li {
+        margin:0;
+      }
+      
+      .main_menu>li>span{
+        height:100%;
+        font-size:1.4rem;
+      }
+      .main_menu>li:hover>span{
+        color:darkblue;
+      }      
+      .main_menu>li>span::after{
+        display:none;
+      }
+      .sub_menu{
+        position:absolute;
+        left:0;
+        right:0;
+        top:calc(100% + 1px);
+        background-color:#f9f9f9;
+        text-align:center;
+      }
+      .sub_menu>li{
+        display:inline-block;
+        margin:1rem;
+      }
+      .nav_bottom{
+        order:2;
+      }
+      .slide_content h3{
+        font-size:4rem;
+      }
+      .slide_content p{
+        font-size:2rem;
+      }
+      .prev, .next{
+        font-size:4rem;
+      }
+      .pagination span{
+        font-size:1.6rem;
+      }
+      .sub_slide_cont{
+        display:flex;
+        flex-flow:row nowrap;
+        justify-content:space-between;
+        align-items: center;
+      }
+      
+      .sub_slide_cont h3,
+      .sub_slide_cont_txt{
+        position:static;        
+      }
+      .sub_slide_cont h3{
+        order:1;
+        width:33.333333%;
+      }
+      .sub_slide_cont::before{
+        content:'';
+        display:block;
+        height:2px;
+        background-color:#000;
+        order:2;
+        width:10%;
+        margin-right:6.666667%
+      }
+      .sub_slide_cont_txt{
+        order:3;
+        width:50%;
+      }
+      .hansol_info{
+        width:130px;
+        font-size:1rem;
+        order:3;
+      }
+      .hansol_info span{
+        font-size:1rem;
+      }
+      .sub_slide_cont_txt p:nth-child(1){
+        font-size:1.2rem;
+        line-height:2rem;
+        order:1;
+        margin-bottom:1.4rem;
+      }
+      .sub_slide_cont_txt p:nth-child(2){
+        font-size:1.2rem;
+        order:2;
+        margin-bottom:1.4rem;
+      }
+      .sub_paginations{
+        display:flex;      
+      }
+    }
+
+
+  </style>
+
+
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/prefixfree.min.js"></script>
+
+  <script>
+    $(function(){      
+
+      $('.btn_nav').on('click',function(){
+        $(this).toggleClass('active');
+        $('.nav').toggleClass('active');
+        $('html').toggleClass('hide');
+        if($(this).hasClass('active') == false){
+          navHide();
+          navColor();
+        };
+      });
+
+      $('.langs div a').on('click',function(){
+        $('.langs div a').removeClass('active');
+        $(this).addClass('active');
+        return false;
+      });
+
+      function navHide(){
+        $('.sub_menu').slideUp(300);
+      };        
+      navHide();
+      function navColor(){
+        $('.main_menu>li>span').removeClass('active');
+      };
+
+      $('.main_menu>li').on('click',function(){
+        if($(this).children('span').hasClass('active')){
+          navColor();
+          navHide();
+        }else{
+          navColor();
+          $(this).children('span').addClass('active');
+          navHide();
+          $(this).children('ul').slideDown(300);
+        }
+      });
+
+      $('.sub_menu a').on('click',function(){
+        return false;
+      });
+
+      $('.skip_menu a').on('focus',function(){
+        $('.skip_menu').css({
+          top:0,
+        });
+      });
+      
+      $('.skip_menu a').on('focusout',function(){
+        $('.skip_menu').css({
+          top:'-100px',
+        });
+      });
+
+      // 다음슬라이드 이동
+      let poLeft = 0;
+      $('#next').on('click',function(){
+        fnNext();
+        prev_next_pagination();
+      }); 
+
+      $('#prev').on('click',function(){
+        fnPrev();
+        prev_next_pagination();
+      });
+
+      function fnPrev(){
+        if(poLeft < 0){
+          poLeft += 100;
+        }
+        $('.slider_images').stop().animate({left:poLeft + 'vw'});
+      };
+      
+      function fnNext(){
+        if(poLeft > -400){
+          poLeft -= 100;
+        }
+        $('.slider_images').stop().animate({left:poLeft + 'vw'});
+      };
+
+      function prev_next_pagination(){
+        $('.pagination').removeClass('active');
+        if(poLeft == 0){
+          $('#page01').addClass('active');
+        }else if(poLeft == -100){
+          $('#page02').addClass('active');
+        }else if(poLeft == -200){
+          $('#page03').addClass('active');
+        }else if(poLeft == -300){
+          $('#page04').addClass('active');
+        }else{
+          $('#page05').addClass('active');
+        }
+      }
+
+      $('.pagination').on('click',function(){
+        let getId = $(this).attr('id');
+        $('.pagination').removeClass('active');
+        $(this).addClass('active');
+        if(getId == 'page01'){
+          poLeft = 0;          
+        }else if(getId == 'page02'){
+          poLeft = -100;
+        }else if(getId == 'page03'){
+          poLeft = -200;
+        }else if(getId == 'page04'){
+          poLeft = -300;
+        }else if(getId == 'page05'){
+          poLeft = -400;
+        }
+        $('.slider_images').stop().animate({left:poLeft + 'vw'});
+
+      })
+
+      $(window).on('scroll',function(){
+        let scrTop = $(document).scrollTop();
+        if(scrTop >= 20){
+          $('.header').addClass('active');
+        }else{
+          $('.header').removeClass('active');
+        }
+      })
+
+
+
+      let subSmarLeft = 0;
+      let subSlider = $('.sub_slider');
+      let subPrev = $('#sub_prev');
+      let subNext = $('#sub_next');
+      let subPagination = $('.sub_pagination');
+      
+      // 서브 슬라이더 이전버튼 클릭 이벤트
+      subPrev.on('click',fnPrev);
+
+      // 서브 슬라이더 다음버튼 클릭 이벤트
+      subNext.on('click',fnNext);
+
+      // 서브 슬라이더 패이지이동 클릭 이벤트
+      subPagination.on('click',function(){
+        let targetPage = $(this);
+        let targetPageId = targetPage.attr('id');
+        subPagination.removeClass('active');
+        targetPage.addClass('active');
+        if(targetPageId == 'sub_pagination01'){
+          subSlider.css({
+            marginLeft:'0vw',
+          })
+        }else if(targetPageId == 'sub_pagination02'){
+          subSlider.css({
+            marginLeft:'-100vw',
+          })
+        }else{
+          subSlider.css({
+            marginLeft:'-200vw',
+          })
+        }
+      })
+
+      function fnNext(){
+        if(subSmarLeft > -200){
+          subSmarLeft -= 100;
+        }
+        subSlider.css({
+          marginLeft:subSmarLeft + 'vw',
+        })   
+        fnpagination();     
+      }
+
+      function fnPrev(){
+        if(subSmarLeft < 0){
+          subSmarLeft += 100;
+        }
+        subSlider.css({
+          marginLeft:subSmarLeft + 'vw',
+        })
+        fnpagination();
+      }
+
+      function fnpagination(){
+        $('.sub_pagination').removeClass('active');
+        if(subSmarLeft == 0){
+          $('#sub_pagination01').addClass('active');
+        }else if(subSmarLeft == -100){
+          $('#sub_pagination02').addClass('active');
+        }else{
+          $('#sub_pagination03').addClass('active');
+        }
+      }
+    })
+  </script>
+
+</head>
+<body>
+  <section class="wrap">
+    <article class="skip_menu">
+      <div class="container">
+        <div class="row">
+          <a href="#main_slider">생산용지 바로가기</a>
+          <a href="#sub_slider">한솔제지 소개 바로가기</a>
+          <a href="#main_content">페이퍼넷 / 구매시스템 바로가기</a>
+        </div>
+      </div>
+    </article>
+    <header class="header">
+      <div class="container">
+        <div class="row clearfix">
+          <h1 class="h1 logo">
+            <a href="index.html">
+              <img src="./images/logo.png" alt="logo">
+            </a>
+          </h1>
+          <div class="btn_nav">
+            <div class="line01"></div>
+            <div class="line02"></div>
+            <div class="line03"></div>
+          </div>
+          <nav class="nav">
+            <div class="langs">
+              <div class="lang01">
+                <a href="#" class="active">KOR</a>                
+              </div>
+              <div class="lang02">
+                <a href="#">ENG</a>                
+              </div>
+            </div>
+            <ul class="ul main_menu">
+              <li class="li">
+                <span>제품소개</span>
+                <ul class="ul sub_menu">
+                  <li class="li"><a href="#">인스퍼</a></li>
+                  <li class="li"><a href="#">인쇄용지</a></li>
+                  <li class="li"><a href="#">산업용지</a></li>
+                  <li class="li"><a href="#">특수지</a></li>
+                  <li class="li"><a href="#">감열지</a></li>
+                  <li class="li"><a href="#">신소재</a></li>
+                </ul>
+              </li>
+              <li class="li">
+                <span>회사소개</span>
+                <ul class="ul sub_menu">
+                  <li class="li"><a href="#">한솔제지</a></li>
+                  <li class="li"><a href="#">이념과 비전</a></li>
+                  <li class="li"><a href="#">연혁</a></li>
+                  <li class="li"><a href="#">CEO인사</a></li>
+                  <li class="li"><a href="#">문화사업</a></li>
+                  <li class="li"><a href="#">사업장 소개</a></li>
+                </ul>
+              </li>
+              <li class="li">
+                <span>지속가능경영</span>
+                <ul class="ul sub_menu">
+                  <li class="li"><a href="#">환경경영</a></li>
+                  <li class="li"><a href="#">윤리경영</a></li>
+                  <li class="li"><a href="#">사회공헌</a></li>
+                  <li class="li"><a href="#">자료실</a></li>
+                </ul>
+              </li>
+              <li class="li">
+                <span>투자정보</span>
+                <ul class="ul sub_menu">
+                  <li class="li"><a href="#">주식정보</a></li>
+                  <li class="li"><a href="#">재무정보</a></li>
+                  <li class="li"><a href="#">공시정보</a></li>
+                  <li class="li"><a href="#">기업지배구조</a></li>
+                  <li class="li"><a href="#">전자공고</a></li>
+                </ul>
+              </li>
+              <li class="li">
+                <span>인재채용</span>
+                <ul class="ul sub_menu">
+                  <li class="li"><a href="#">인재상</a></li>
+                  <li class="li"><a href="#">인사제도</a></li>
+                  <li class="li"><a href="#">채용정보</a></li>
+                </ul>
+              </li>
+              <li class="li">
+                <span>소식</span>
+                <ul class="ul sub_menu">
+                  <li class="li"><a href="#">공지사항</a></li>
+                  <li class="li"><a href="#">뉴스</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="nav_bottom">
+              <div class="qna">
+                <a href="#">고객문의</a>
+              </div>
+              <div class="sns">
+                <a href="#"><i class="fab fa-instagram-square"></i></a>
+                <a href="#"><i class="fab fa-facebook-square"></i></i></a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <section class="section main_slider" id="main_slider">
+      <div class="container">
+        <div class="slider">
+          <ul class="slider_images clearfix">
+            <li class="slide active" id="slide01">
+              <div class="slide_content">
+                <h3>INSPER</h3>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse sed temporibus doloremque placeat, saepe sapiente excepturi explicabo, distinctio eaque atque similique reprehenderit, veniam nihil itaque quia eum maiores quibusdam quis?
+                </p>
+              </div>
+            </li>
+            <li class="slide" id="slide02">
+              <div class="slide_content">
+                <h3>인쇄용지</h3>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse sed temporibus doloremque placeat, saepe sapiente excepturi explicabo, distinctio eaque atque similique reprehenderit, veniam nihil itaque quia eum maiores quibusdam quis?
+                </p>
+              </div>
+            </li>
+            <li class="slide" id="slide03">
+              <div class="slide_content">
+                <h3>산업용지</h3>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse sed temporibus doloremque placeat, saepe sapiente excepturi explicabo, distinctio eaque atque similique reprehenderit, veniam nihil itaque quia eum maiores quibusdam quis?
+                </p>
+              </div>
+            </li>
+            <li class="slide" id="slide04">
+              <div class="slide_content">
+                <h3>특수지</h3>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse sed temporibus doloremque placeat, saepe sapiente excepturi explicabo, distinctio eaque atque similique reprehenderit, veniam nihil itaque quia eum maiores quibusdam quis?
+                </p>
+              </div>
+            </li>
+            <li class="slide" id="slide05">
+              <div class="slide_content">
+                <h3>감열지</h3>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse sed temporibus doloremque placeat, saepe sapiente excepturi explicabo, distinctio eaque atque similique reprehenderit, veniam nihil itaque quia eum maiores quibusdam quis?
+                </p>
+              </div>
+            </li>
+          </ul>
+          <div class="slider_prev_next_btn">
+            <div class="prev" id="prev">
+              <i class="fas fa-chevron-circle-left"></i>
+            </div>
+            <div class="next" id="next">
+              <i class="fas fa-chevron-circle-right"></i>
+            </div>
+          </div>
+          <div class="slider_pagination">
+            <div class="pagination active" id="page01">
+              <span>INSPER</span>
+            </div>
+            <div class="pagination" id="page02">
+              <span>인쇄용지</span>
+            </div>
+            <div class="pagination" id="page03">
+              <span>산업용지</span>
+            </div>
+            <div class="pagination" id="page04">
+              <span>특수지</span>
+            </div>
+            <div class="pagination" id="page05">
+              <span>감열지</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sec_sub_slider" id="sub_slider">
+      <div class="sub_container">
+        <div class="sub_slider">
+          <div class="sub_slide" id="sub_slide01">
+            <div class="sub_slide_cont container">
+              <h3>
+                한솔제지는 
+                <br>
+                국내 제지산업의
+                <br>
+                중심입니다.
+              </h3>
+              <div class="sub_slide_cont_txt">
+                <p>
+                  한솔인은 어려움에 부닥치거나 도전을 받으면
+                  <br>
+                  철갑을 두른 듯하다는 그 소나무처럼 강철 같은 힘을 발휘한다.
+                  <br>
+                  침엽수의 날카로운 잎처럼 예리하고 섬세한 적응력으로 응전을 한다.
+                </p>
+                <p>
+                  초대 문화부 장관 이어령, 한솔 40년 사사 축사 중
+                </p>
+                <div class="hansol_info">
+                  <span>한솔제지 소개</span>
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+            <div class="sub_slide_img" id="sub_slide_img01"></div>
+          </div>
+          <div class="sub_slide" id="sub_slide02">
+            <div class="sub_slide_cont container">
+              <h3>
+                한솔제지는 
+                <br>
+                국내 제지산업의
+                <br>
+                중심입니다.
+              </h3>
+              <div class="sub_slide_cont_txt">
+                <p>
+                  2
+                  <br>
+                  2
+                  <br>
+                  2
+                </p>
+                <p>
+                  초대 문화부 장관 이어령, 한솔 40년 사사 축사 중
+                </p>
+                <div class="hansol_info">
+                  <span>한솔제지 소개</span>
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+            <div class="sub_slide_img" id="sub_slide_img02"></div>
+          </div>
+          <div class="sub_slide" id="sub_slide03">
+            <div class="sub_slide_cont container">
+              <h3>
+                한솔제지는 
+                <br>
+                국내 제지산업의
+                <br>
+                중심입니다.
+              </h3>
+              <div class="sub_slide_cont_txt">
+                <p>
+                  3
+                  <br>
+                  3
+                  <br>
+                  3
+                </p>
+                <p>
+                  초대 문화부 장관 이어령, 한솔 40년 사사 축사 중
+                </p>
+                <div class="hansol_info">
+                  <span>한솔제지 소개</span>
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+            <div class="sub_slide_img" id="sub_slide_img03"></div>
+          </div>
+        </div>
+        <div class="sub_prev_next">
+          <div class="sub_prev" id="sub_prev">
+            <i class="fas fa-chevron-left"></i>
+          </div>
+          <div class="sub_next" id="sub_next">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+        <div class="sub_paginations">
+          <div class="sub_pagination active" id="sub_pagination01"></div>
+          <div class="sub_pagination" id="sub_pagination02"></div>
+          <div class="sub_pagination" id="sub_pagination03"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section main_content" id="main_content">
+
+    </section>
+
+    <footer class="footer">
+
+    </footer>
+  </section>
+</body>
+</html>

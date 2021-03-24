@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크리스피도넛</title>
+    <link rel="stylesheet" href="./favicon.ico">
+    <style>
+        /* css reset */
+        *{margin:0;border:none;padding:0;}
+        a,div,span,h1,h2,h3,h4,h5,h6,p,header,section,footer,nav,article,aside,address,ul,ol,li,input,select,option,button{font-weight:400;font-size:14px;color:#333;text-decoration:none;vertical-align:baseline;}
+        img{width:100%;vertical-align:top;}
+        a{text-decoration:none;color:rgb(51, 51, 51);}
+        ul,ol,li{list-style:none;}
+        .clearfix::after{content:'';display:block;clear:both}
+
+       
+        
+        /* header section */
+        .header{background:white;}
+        .header>div{width:130px;margin:0 auto;padding:17.11px 0;}
+        .header p{float:right;margin-right:20px;font-size:20px;color:#333;cursor:pointer;}
+        .main_nav{text-align:center;padding:12px 0;background:#e49477;}
+        .main_nav ul{display:inline-block;}
+        .main_nav li{display:inline-block;padding:0 25px;}
+        .main_nav li a{font-weight:bold;font-size:24px;color:#e5e5e5;transition:0.3s;}
+        .main_nav li a:hover{color:black;}
+        /* section css */
+         /* banner article */
+        .banner{position:relative;height:500px;background-image:url('images/banner01.jpg');background-size: cover;}
+        .banner>h2{padding-top:140px;font-weight:bold;font-size:48px;color:#e5e5e5;text-align:center;}
+        .pop_up{position:absolute;left:50%;top:72%;transform:translate(-50%,-30%);background-color:rgba(95, 95, 95, 0.3);width:800px;padding:20px;}
+        form>div{float:left;width:35%;}
+        form>div:nth-child(3){width:20%;}
+        form>div:nth-child(4){width:10%;}
+        form>div>label{display:block;margin-bottom:10px;font-size:18px;color:#333;}
+        label[for="men"],label[for="girl"]{display:inline-block;width:50px;border:1px solid black;font-size:12px;color:#333;padding:6px 10px 10px;text-align:right;}
+        label[for="men"]::before,label[for="girl"]::before{content:'';display:inline-block;width:10px;height:10px;margin-right:16px;}
+        label[for="men"]::before{background-image:url('images/men.png');background-repeat:no-repeat;background-size:cover;}
+        label[for="girl"]::before{background-image:url('images/girl.png');background-repeat:no-repeat;background-size:cover;}
+        select,input[type="text"]{width:80%;border:1px solid black;padding:6px 10px 10px;}
+        input[type="text"]{width:60%;}
+        input[type="radio"]{display:none;}
+        input[type="radio"]:checked+label{border:white;background-color:#362e2b;color:white;}
+        button{width:100%;height:71px;color:white;font-size:20px;background-color:#362e2b;cursor:pointer;}
+         
+        /* content article */
+            /* content top */
+        .content{padding:20px;height:604px;}
+        .content>h3{font-size:36px;text-align:center;margin-bottom:30px;}
+        .content>ul,.content_bottom,.content_bottom>div{padding:30px 0;}
+        .content>ul>li{float:left;width:25%;text-align:center;}
+        .content>ul>li a img{display:block;width:25%;margin:0 auto 10px;}
+            /* content botton */
+        .content_bottom>div,.content_bottom>ul{float:left;width:50%;}
+        .content_bottom h4{margin-bottom:20px;font-weight:bold;font-size:20px;text-align:center;}
+        .content_bottom p{width:70%;margin:0 auto;text-align:center;font-size:16px;}
+        .content_bottom>ul>li{width:70%;margin:0 auto 30px;padding:10px 0;background:#e7977a;text-align:center;}
+        .content_bottom>ul>li>a{font-size:18px;color:white;}
+
+        /* footer section */
+         /* tooter top */
+        .footer_top{background:#f9f9f9;padding:30px 0;}
+        .footer_top>ul>li{float:left;width:25%;text-align:center;font-size:20px;}
+        .sub_menu{padding-top:10px;}
+        .sub_menu li{padding:5px;text-align:center;}
+           /* tooter bottom */
+        .footer_bottom{background:#ccc;padding:30px 0;}
+        .footer_bottom>div{float:left;}
+        .footer_logo{width:10%;padding-top:10px;text-align:center;}
+        .footer_logo>img{width:50%;}
+        address{font-style:normal;padding-top:10px;}
+        .footer_bottom>.icons{float:right;}
+        .icons>span{display:inline-block;width:60px;height:60px;margin-right:15px;border-radius:50%;text-indent:-999999px;}
+        .icons>span:nth-child(1){background:url('images/ficon.png') no-repeat;background-size:cover;}
+        .icons>span:nth-child(2){background:url('images/iicon.png') no-repeat;background-size:cover;}
+        .icons>span:nth-child(3){background:url('images/gicon.png') no-repeat;background-size:cover;margin-right:30px;}
+        
+        /* login box */
+        .login{display:none;position:fixed;left: 0;top: 0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1;}
+        .login>div{position: absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:50%;height:50%;background:white;}
+        .login>div>.x_clearfix{float:right;font-size:20px;padding: 10px 30px;}
+        .login>div>form{padding:40px;}
+        .login>div>form>p{font-size:50px;text-align:center;padding-left: 80px;}
+        .box{width:65%;padding-left:256px;}
+        .box>.la_id{margin-left: 10px;}
+        .box>input{height:30px;margin-bottom: 20px;}
+        .in_pw{border: 1px solid black;padding: 6px 10px 10px;width:60%;}
+        .but_login{width:41%;margin: 0 auto;}
+        .check{margin:0 0 10px 20px;}
+
+    </style>
+</head>
+<body>
+    <div class="login">
+       <!-- login box -->
+            <div>
+            <p class="x_clearfix" onclick="document.querySelector('.login').style.display='none';">x</p>  
+            <form >
+                 <p>LOGIN</p>
+            </form>
+            <fieldset>
+            <div class="box">
+                <label class="la_id" for="id">id</label>
+                <input type="text">
+                <br>
+                <label  class="pw" for="pass">pw</label>
+                <input class="in_pw" type="password">
+                <div class="check">
+                    <input type="checkbox" id="keepLogin" class="inp_radio"  name="keepLogin">
+                    <label  class="pw" for="pass">keepLogin</label>
+                </div>
+            </div>
+            <div class="but_login">
+                <button type="submit" class="btn_login" disabled >login</button>
+            </div>
+         </div>
+         </fieldset>
+    </div>
+    <div class="wrap">
+        <!-- header section -->
+        <header class="header clearfix">
+            <div>
+            <a href="#">
+              <img src="images/logo.png" alt="logo">
+            </a>
+            </div>            
+            <p onclick="document.querySelector('.login').style.display='block';">login</p>
+        </header>
+        <!-- main nav -->
+                <section>
+                    <nav class="main_nav">
+                         <ul>
+                        <li><a href="#">MENU</a></li>
+                        <li><a href="#">STORE</a></li>
+                        <li><a href="#">HOME SERVICE</a></li>
+                        <li><a href="#">EVENT</a></li>
+                        <li><a href="#">BRAND</a></li>
+                        <li><a href="#">SURVEY</a></li>
+                         </ul>
+                    </nav>
+                </section>
+        <!-- content section -->
+        <section class="section">
+            <article class="banner">
+                <img src="./images/vis_02_obj.png" alt="img">
+           
+                 
+                <div class="content_bottom clearfix">
+                    <div>
+                        <h4>"크리스피크림도넛, 초콜릿 도넛 한정 판매"</h4>
+                        <p>크리스피크림 도넛은 해외 유명 초콜릿 업체와 컬래버레이션을 통해 개발한 'WORLD FAMOUS' 초콜릿 도넛을 한정 판매한다고 22일 밝혔다.</p>
+                    </div>
+                    <ul>
+                        <li><a href="#">TWIRL DARK CHOCO</a></li>
+                        <li><a href="#">SPRINKLE N CRÈME</a></li>
+                        <li><a href="#">CRUNCH CARAMEL CHOCO</a></li>
+                        <li><a href="#">MILKA OREO CHOCOCAKE</a></li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+        <!-- footer section -->
+        <footer class="footer">
+            <div class="footer_top">
+                <ul class="clearfix">
+                    <li>신제품 / 인기제품
+                        <ul class="sub_menu sub_menu01">
+                            <li><a href="#">밀카 오레오 초코케익</a></li>
+                            <li><a href="#">스프링클 앤 크림</a></li>
+                            <li><a href="#">트윌 다크초코</a></li>
+                            <li><a href="#">크런치 카라멜 초코</a></li>
+                        </ul>
+                    </li>
+                    <li>이벤트
+                        <ul class="sub_menu sub_menu02">
+                            <li><a href="#">L.POINT 간편함 그 이상의 결제 엘페이</a></li>
+                            <li><a href="#">크리스피 크림 단체주문으로 소중한 사람들과 달콤한 사랑을 나누세요</a></li>
+                            <li><a href="#">달콤한 수요일 오리지널 글레이즈드 하프더즌 1+1</a></li>
+                        </ul>
+                    </li>
+                    <li>홈서비스</li>
+                         <ul class="sub_menu sub_menu03">
+                            <li><a href="#">LOTTE EATZ</a></li>
+                    <li>Brand
+                        <ul class="sub_menu sub_menu04">
+                            <li><a href="#">도넛극장</a></li>
+                            <li><a href="#">브랜드 스토리</a></li>
+                            <li><a href="#">브랜드 영상</a></li>
+                            <li><a href="#">상품권 구입안내</a></li>
+                            <li><a href="#">공지사항</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer_bottom clearfix">
+                <div class="footer_logo">
+                    <img src="images/logo.png" alt="logo">
+                </div>
+                <div>
+                    <address>
+                        <p>서울특별시 용산구 한강대로71길 47 대표문의 : 02-709-1114(가맹문의,행사안내등)</p>
+                        <p>copyright :차우철</p>
+                    </address>
+                </div>
+                <div class="icons">
+                    <span>페이스북</span>
+                    <span>인스타그램</span>
+                    <span>유튜브</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 

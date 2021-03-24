@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+.login{padding-top:36px;}
+.login .local_nav{float:left;width:226px;}
+.local_nav>ul:first-child{margin-bottom:48px;}
+.local_nav>ul:first-child>li{margin-bottom:-12px;}
+.local_nav>ul:first-child>li>a{font-size:26px;font-weight:700;color:#333;}
+.local_nav>ul:first-child>li:first-child>a{color:#ba000c;}
+.local_nav>ul:first-child>li>a:hover{color:#ba000c;}
+.local_nav>ul:last-child{border-bottom:1px solid #ccc;}
+.local_nav>ul:last-child>li{color:#666;}
+.local_nav>ul:last-child>li:nth-child(2){line-height:16px;}
+.local_nav>ul:last-child>li:nth-child(3){padding:24px 0;}
+.local_nav>ul:last-child>li>a{color:#666;font-size:18px;font-weight:600;}
+.local_nav>ul:last-child img{width:100%;}
+.login .article{float:right;width:678px;}
+.login .article>h2{margin-bottom:24px;font-size:42px;font-weight:500;color:#333;}
+.tit{margin-bottom:-12px;font-size:72px;font-weight:600;color:#ba000c;}
+.login_txt{margin-bottom:48px;;font-size:16px;color:#333;line-height:22px;}
+form{width:452px;}
+form .id_pass_box .id_pass_input{float:left;}
+form .id_pass_box .id_pass_input input{width:339px;margin-bottom:12px;border:1px solid #ccc;padding:10px;color:#ba000c;}
+form .id_pass_box .submit_btn{float:right;}
+form .id_pass_box .submit_btn input{width:101px;height:86px;background-color:#ba000c;font-size:14px;font-weight:600;color:#fff;}
+form .chk_box label input{display:inline-block;}
+.line{height:1px;margin:24px 0;background-color:#ccc;text-indent:-9999px;}
+.login .article>ul{padding-bottom:56px;}
+.login .article>ul>li{float:left;width:33.333333333333%;}
+.login .article>ul>li>.img_box{height:62px;}
+.login .article>ul>li>.img_box>img{margin:0 auto;}
+.login .article>ul>li>p{margin-bottom:12px;}
+.login .article>ul>li>input{border:1px solid #aaa;padding:6px 12px;background-image:linear-gradient(#fff,#ddd);}
